@@ -60,21 +60,21 @@ kubectl get services
 ```
 kubectl exec -it "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
 ```
-6. Make it accessible from outside
+6. Make it accessible from outside (steps 7 to 11)
 
-6.1 Create the ingress gateway
+7. Create the ingress gateway
 ```
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 ```
-6.2 Verify it
+8. Verify it
 ```
 kubectl get gateway
 ```
-6.3 Run the following command to see if the external load balancer is available for the kubernates cluster. If yes, an external IP would be shown in the result of the below command. I have not set it up yet. So I have to use the node port.
+9. Run the following command to see if the external load balancer is available for the kubernates cluster. If yes, an external IP would be shown in the result of the below command. I have not set it up yet. So I have to use the node port.
 ```
 kubectl get svc istio-ingressgateway -n istio-system
 ```
-6.4 For building the URL for node port follow the below commands
+10. For building the URL for node port follow the below commands
 ```
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
@@ -82,12 +82,12 @@ export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgatew
 export INGRESS_HOST=$(minikube ip)
 export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 ```
-6.5 Hit the following url on browser to see if things work - http://192.168.99.102:32143/productpage. Hitting this url without /productpage will not take us anywhere since it is not allowed in the virtual service we have created. Also note that unlike docker for desktop in which one could access node port also from localhost, here it has to be the IP of the minikube.
-7. Enable the destination rules where subsets are defined. These version map to the label defined for each pod in the application yaml file - /opt/istio-1.6.1/samples/bookinfo/platform/kube/bookinfo.yaml
+11. Hit the following url on browser to see if things work - http://192.168.99.102:32143/productpage. Hitting this url without /productpage will not take us anywhere since it is not allowed in the virtual service we have created. Also note that unlike docker for desktop in which one could access node port also from localhost, here it has to be the IP of the minikube.
+12. Enable the destination rules where subsets are defined. These version map to the label defined for each pod in the application yaml file - /opt/istio-1.6.1/samples/bookinfo/platform/kube/bookinfo.yaml
 ```
 kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
 ```
-8. Verify if the destination rules are set correctly
+13. Verify if the destination rules are set correctly
 ```
 kubectl get destinationrules -o yaml
 ```
