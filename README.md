@@ -171,6 +171,8 @@ minikube addons enable ingress
 
 
 
+
+
 8. Create ingress resources for each of the services like grafana, kiali etc. Confused about ingress vs service vs nodeport etc etc? Read this - https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
 ```
 kubectl apply -f - <<EOF
