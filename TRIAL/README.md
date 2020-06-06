@@ -1,4 +1,4 @@
-# Istio Playground project
+# Istio Playground project 
 A playground project for istio
 
 Steps 2,3,6,7 I dont know how many of them are relavent. Follow from steps 8 again. Istio does not seem to work with driver none and docker. Lets try now with driver virtualbox. ok! Istio does not work with minikube in baremetal or docker. Only works with virtual box. Have not tried kvm2. (see point 11)
