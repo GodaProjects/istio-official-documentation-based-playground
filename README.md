@@ -130,13 +130,18 @@ kubectl logs -l app=httpbin -c istio-proxy
 
 9. Package a service - https://istio.io/docs/examples/microservices-istio/package-service/. In this we build the docker container and test it locally. Use --network=host with docker build. Otherwise does not work. Will have to check later. Bridge network is not working. Is this a problem with 19.03.X or something else? Lot of forum issues on the same. Will check later.
 
-10. Run the application with k8s - https://istio.io/docs/examples/microservices-istio/bookinfo-kubernetes/. You have to enable ingress add on for minikube using the below command otherwise IP will not be assigned. See for more information - https://stackoverflow.com/questions/51511547/empty-address-kubernetes-ingress
+10. DOES NOT WORK COMPLETELY - Run the application with k8s - https://istio.io/docs/examples/microservices-istio/bookinfo-kubernetes/. You have to enable ingress add on for minikube using the below command otherwise IP will not be assigned. See for more information - https://stackoverflow.com/questions/51511547/empty-address-kubernetes-ingress. One more thing. You dont get IP immediately. Getting IP will take time. Probably a few seconds.
 ```
 minikube addons enable ingress
 ```
+11. Testing microservices - https://istio.io/docs/examples/microservices-istio/production-testing/
+12. Add new versions of existing microservices - https://istio.io/docs/examples/microservices-istio/add-new-microservice-version/
+13. DOES NOT WORK COMPLETELY - Steps 8 to 12 were pure docker and kubernetes. Now we move to istios. Enable Istio on productpage - https://istio.io/docs/examples/microservices-istio/add-istio/
+14. Issues: static resources dont show up. grafana dashboard does not come up.
+15. Adding istio to all services - https://istio.io/docs/examples/microservices-istio/istio-ingress-gateway/ - static works after virtualservice is added. Need to understand all this in detail. It should have worked with the k8s ingress itself. See https://github.com/istio/istio/issues/13244
+16. MOnitoring - https://istio.io/docs/examples/microservices-istio/logs-istio/
 
-
-
+On the whole the documentation does not seem to reflect what should have happened. I am going to rather follow this tutorial. Makes more sense I guess. https://www.youtube.com/watch?v=WFu8OLXUETY&list=PL34sAs7_26wPkw9g-5NQPP_rHVzApGpKP&index=2&t=301s
 
 
 
