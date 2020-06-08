@@ -1,6 +1,11 @@
 # Istio Playground project
 A playground project for istio
 
+Note: If you want grafana and monitoring enabled - keep it enabled when you installed itself and then setup your applications. It does not work otherwise. I might be wrong. But thats the way it worked for me. And I REALLY dont have time to debug and find out why
+```
+istioctl install --set profile=demo --set components.telemetry.enabled=true --set components.citadel.enabled=true
+```
+
 Here we will try all the steps for docker, kubectl, minikube and istio all over again to make sure we get it right. Not including virualbox installation here. Does not matter.
 
 ### Install docker
